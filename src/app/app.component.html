@@ -1,4 +1,12 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<button
+  (click)="onBatchRequested()"
+  [disabled]="preloadPending$ | async"
+>
+  Get another batch of images
+</button>
+
+<ul>
+  <li *ngFor="let image of currentBatch">
+    {{image}}
+  </li>
+</ul>

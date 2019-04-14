@@ -5,3 +5,8 @@ export default [
   ImagePreloaderService,
   RandomImageService
 ];
+
+export {
+  ImagePreloaderService,
+  RandomImageService
+};
