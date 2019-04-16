@@ -1,3 +1,10 @@
-p {
-  font-family: Lato;
+:host {
+  height: 100vh;
+  width: 100vw;
+  overflow-: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #242425;
 }

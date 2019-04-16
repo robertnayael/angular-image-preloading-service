@@ -5,8 +5,6 @@
   Get another batch of images
 </button>
 
-<ul>
-  <li *ngFor="let image of currentBatch">
-    {{image}}
-  </li>
-</ul>
+<app-image-list
+  [images]="currentBatch"
+></app-image-list>
