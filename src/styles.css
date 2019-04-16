@@ -1,3 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600);
+
+body {
+  color: #ffffff;
+	font-weight: 400;
+	font-size: 1em;
+	font-family: 'Raleway', sans-serif;
+}
+
+button {
+  font-family : inherit;
+  font-size: 1em;
+}
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;

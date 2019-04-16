@@ -1,9 +1,8 @@
-<button
+<app-button
   (click)="onBatchRequested()"
-  [disabled]="preloadPending$ | async"
+  [label]="'Another batch'"
 >
-  Get another batch of images
-</button>
+</app-button>
 
 <app-image-list
   [images]="currentBatch"
