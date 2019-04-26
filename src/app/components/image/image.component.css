@@ -4,5 +4,5 @@
   display: block;
   object-fit: cover;
 
-  box-shadow: 1vw 1vw 2vw -1vw rgba(0,0,0,0.75);
+  box-shadow: 1rem 1rem 2rem -1rem rgba(0,0,0,0.75);
 }

@@ -1,19 +1,18 @@
 .image-list {
   list-style: none;
   margin: 0;
-  padding: 0;
 
-  width: 84vw;
-  height: 64vw;
+  width: 100rem;
+  height: 70rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
-
+  padding: 4rem;
 }
 
 .image-list__item {
   display: block;
-  width: 40vw;
-  height: 30vw;
+  width: 44rem;
+  height: 29rem;
 }

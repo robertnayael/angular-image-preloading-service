@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, OnInit, Input, HostListener } from '@angular/core';
+import { Directive, OnInit, OnDestroy, Input, HostListener } from '@angular/core';
 import { Component, Inject, Renderer2 } from '@angular/core';
 
 import { ReplaySubject, fromEvent, Observable, Subscription, combineLatest } from 'rxjs';
@@ -18,8 +18,8 @@ interface ViewportSize {
 @Directive({
   selector: '[appRemFromAspectRatio]',
 })
-export class RemFromAspectRatioDirective implements OnInit {
-  private aspectRatio$: ReplaySubject<{ x: number, y: number }> = new ReplaySubject(1);
+export class RemFromAspectRatioDirective implements OnInit, OnDestroy {
+  private aspectRatio$: ReplaySubject<AspectRatio> = new ReplaySubject(1);
   private viewportSize$: Observable<ViewportSize>;
   private subscription: Subscription;
 
@@ -52,11 +52,28 @@ export class RemFromAspectRatioDirective implements OnInit {
       this.viewportSize$,
       this.aspectRatio$
     )
-      .subscribe(console.log)
+      .pipe(this.calculateRem)
+      .subscribe(this.applyRem)
   }
 
-  private applyRem = () => {
-    this.renderer.setStyle(this.document.body.parentNode, 'fontSize', '16.5px');
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  private calculateRem = (source$: Observable<[ ViewportSize, AspectRatio ]>) =>
+    source$.pipe(
+      map(([ vp, ar]) => {
+        const targetRatio = ar.x / ar.y;
+        const currentRatio = vp.width / vp.height;
+        const contentWidth = targetRatio < currentRatio
+          ? vp.height * targetRatio
+          : vp.width;
+        return contentWidth / 100;
+      })
+    )
+
+  private applyRem = (fontSize: number) => {
+    this.renderer.setStyle(this.document.body.parentNode, 'fontSize', `${fontSize}px`);
   }
 
 }
