@@ -10,12 +10,14 @@ import { ImagePreloaderService, RandomImageService } from './services';
 export class AppComponent  {
 
   preloadPending$ = this.imagePreloader.isBusy$;
-  currentBatch = this.randomImage.getBatch(4);
+  currentBatch: string[];
 
   constructor(
     private imagePreloader: ImagePreloaderService,
     private randomImage: RandomImageService
-  ) {}
+  ) {
+    this.onBatchRequested();
+  }
 
   onBatchRequested() {
     this.currentBatch = this.randomImage.getBatch(4);

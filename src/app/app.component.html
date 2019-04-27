@@ -9,3 +9,7 @@
 <app-image-list
   [images]="currentBatch"
 ></app-image-list>
+
+<app-overlay
+  [visible]="preloadPending$ | async"
+></app-overlay>

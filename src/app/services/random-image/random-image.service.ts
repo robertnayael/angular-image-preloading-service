@@ -6,7 +6,7 @@ import images from '../../assets';
 @Injectable()
 export class RandomImageService {
 
-  getBatch(batchSize: number) {
+  getBatch(batchSize: number): string[] {
     return sampleSize(images, batchSize);
   }
 
